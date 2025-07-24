@@ -1,0 +1,23 @@
+# Python virtual environment
+backend/venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django migrations
+*/migrations/*
+!*/migrations/__init__.py
+
+# SQLite DB
+*.sqlite3
+
+# VSCode settings
+.vscode/
+
+# MacOS
+.DS_Store
+
+# 기타 불필요한 파일
+*.log 
