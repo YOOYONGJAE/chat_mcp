@@ -15,9 +15,9 @@ class ChatApiConfig(AppConfig):
 
         # ❗ 코드 변경 감지 프로세스에서는 모델 로딩 생략
         if os.environ.get('RUN_MAIN') != 'true':
-            print("⚠️ RUN_MAIN 아님: 모델 로딩 생략")
+            print("[WARN] RUN_MAIN 아님: 모델 로딩 생략")
             return
 
-        print("🧠 모델 로딩 시작")
+        print("[INFO] 모델 로딩 시작")
         from . import llama_loader
         llama_loader.load_model()

@@ -29,14 +29,33 @@ def get_rag_prompt(question: str, top_k: int = TOP_K, threshold: float = 140) ->
 
     # 유사도가 너무 낮으면 RAG 생략
     top_score = D[0][0]
-    print(f"🔍 유사도 거리 점수: {top_score}")
+    print(f"[INFO] 유사도 거리 점수: {top_score}")
 
     if top_score > threshold:  # 예: 1.0 이상이면 관련 문서 아님
-        context = "정보 없음"
-        question = "답변할 수 없는 질문입니다. 죄송합니다."
+        context = "답변할 수 없는 질문입니다."
+        question = "답변할 수 없는 질문입니다."
 
-    else : context = "\n".join([documents[i]['text'] for i in I[0]])
+    else : context = "\n".join([documents[i]['text'] for i in I[0]])       
 
+
+#     return f"""
+# 정보만 사용해서 질문에 답하세요.
+# 정보에 없는 내용은 '모르겠습니다'라고 답하세요.
+# 정보: {context}
+# 질문: {question}
+# 답변: 
+# """
+
+# TinyLlama
+#     return f"""
+# question: {question}
+# information: {context}
+# information 기반으로만 답변하세요.
+# information 외의 내용을 상상하거나 추측하지 마세요. 한국어로만 답변하세요.
+# answer:
+# """
+
+# gemma
     return f"""
 질문: {question}
 정보: {context}
