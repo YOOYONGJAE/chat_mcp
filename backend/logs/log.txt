@@ -1,0 +1,121 @@
+
+[INFO] chat_test 실행
+[INFO] 질문 : 이메일이 어떻게 되니?
+[INFO] 유사도 거리 점수: 118.12770080566406
+[INFO] rag_prompt : <start_of_turn>user
+질문: 이메일이 어떻게 되니?<end_of_turn>
+<start_of_turn>model
+
+[INFO] 모델 로딩 완료
+[INFO] 전처리 시작
+[INFO] 전처리 완료 : 0.002996683120727539초
+[INFO] GenerationConfig 옵션 설정
+[INFO] 생성 시작
+[INFO] 생성 완료 : 8.496092081069946초
+[INFO] answer : 이메일 : tlsrb0025@ncubeworld.com다큐브!
+[04/Aug/2025 20:55:22] "GET /chat_test?question=%EC%9D%B4%EB%A9%94%EC%9D%BC%EC%9D%B4%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EB%90%98%EB%8B%88? HTTP/1.1" 200 160
+[INFO] chat_test 실행
+[INFO] 질문 : 최근 주요 활동 뭐 했어?
+[INFO] 유사도 거리 점수: 166.3311767578125
+[INFO] rag_prompt : <start_of_turn>user
+질문: 최근 주요 활동 뭐 했어?<end_of_turn>
+<start_of_turn>model
+
+[INFO] 모델 로딩 완료
+[INFO] 전처리 시작
+[INFO] 전처리 완료 : 0.001035928726196289초
+[INFO] GenerationConfig 옵션 설정
+[INFO] 생성 시작
+[INFO] 생성 완료 : 11.312707662582397초
+[INFO] answer : 동영상 제작 및 배급업 등록 종합디자인전문회사 등록 이러닝 사업자 등록다큐브!
+[04/Aug/2025 20:56:19] "GET /chat_test?question=%EC%B5%9C%EA%B7%BC%20%EC%A3%BC%EC%9A%94%20%ED%99%9C%EB%8F%99%20%EB%AD%90%20%ED%96%88%EC%96%B4? HTTP/1.1" 200 229
+[INFO] chat_test 실행
+[INFO] 질문 : 2024년에 뭐 했어?
+[INFO] 유사도 거리 점수: 184.979248046875
+[INFO] rag_prompt : <start_of_turn>user
+질문: 2024년에 뭐 했어?<end_of_turn>
+<start_of_turn>model
+
+[INFO] 모델 로딩 완료
+[INFO] 전처리 시작
+[INFO] 전처리 완료 : 0.0020012855529785156초
+[INFO] GenerationConfig 옵션 설정
+[INFO] 생성 시작
+[INFO] 생성 완료 : 14.040948152542114초
+[INFO] answer : 성취평가 아카이브 구축, 메타버스미디어핵심기술개발, 해양교통안전 VR 콘텐츠 제작다큐브!
+[04/Aug/2025 20:57:01] "GET /chat_test?question=2024%EB%85%84%EC%97%90%20%EB%AD%90%20%ED%96%88%EC%96%B4? HTTP/1.1" 200 233
+[INFO] chat_test 실행
+[INFO] 질문 : 2024년과 2023년에 뭐 했어?
+[INFO] 유사도 거리 점수: 183.84521484375
+[INFO] rag_prompt : <start_of_turn>user
+질문: 2024년과 2023년에 뭐 했어?<end_of_turn>
+<start_of_turn>model
+
+[INFO] 모델 로딩 완료
+[INFO] 전처리 시작
+[INFO] 전처리 완료 : 0.0010001659393310547초
+[INFO] GenerationConfig 옵션 설정
+[INFO] 생성 시작
+[INFO] 생성 완료 : 14.416597843170166초
+[INFO] answer : 내포보부상촌 모바일 미션투어2, AI 기반 AR체험게임 구축, 2024년다큐브!
+[04/Aug/2025 20:57:36] "GET /chat_test?question=2024%EB%85%84%EA%B3%BC%202023%EB%85%84%EC%97%90%20%EB%AD%90%20%ED%96%88%EC%96%B4? HTTP/1.1" 200 215
+[INFO] chat_test 실행
+[INFO] 질문 : 23년에 한 것 말해줘
+[INFO] 유사도 거리 점수: 188.7249755859375
+[INFO] rag_prompt : <start_of_turn>user
+질문: 23년에 한 것 말해줘<end_of_turn>
+<start_of_turn>model
+
+[INFO] 모델 로딩 완료
+[INFO] 전처리 시작
+[INFO] 전처리 완료 : 0.001001596450805664초
+[INFO] GenerationConfig 옵션 설정
+[INFO] 생성 시작
+[INFO] 생성 완료 : 6.862640857696533초
+[INFO] answer : AI 프레임워크 시스템 구축다큐브!
+[04/Aug/2025 20:59:31] "GET /chat_test?question=23%EB%85%84%EC%97%90%20%ED%95%9C%20%EA%B2%83%20%EB%A7%90%ED%95%B4%EC%A4%98 HTTP/1.1" 200 157
+[INFO] chat_test 실행
+[INFO] 질문 : 2023년에 한 것 말해줘
+[INFO] 유사도 거리 점수: 167.18724060058594
+[INFO] rag_prompt : <start_of_turn>user
+질문: 2023년에 한 것 말해줘<end_of_turn>
+<start_of_turn>model
+
+[INFO] 모델 로딩 완료
+[INFO] 전처리 시작
+[INFO] 전처리 완료 : 0.0020008087158203125초
+[INFO] GenerationConfig 옵션 설정
+[INFO] 생성 시작
+[INFO] 생성 완료 : 13.016358613967896초
+[INFO] answer : 개인보호복디브우리카풀, AI 기반 모바일 교육체험 구축, 2023년다큐브!
+[04/Aug/2025 20:59:57] "GET /chat_test?question=2023%EB%85%84%EC%97%90%20%ED%95%9C%20%EA%B2%83%20%EB%A7%90%ED%95%B4%EC%A4%98 HTTP/1.1" 200 209
+[INFO] chat_test 실행
+[INFO] 질문 : 회사 소개 해줘
+[INFO] 유사도 거리 점수: 117.77010345458984
+[INFO] rag_prompt : <start_of_turn>user
+질문: 회사 소개 해줘<end_of_turn>
+<start_of_turn>model
+
+[INFO] 모델 로딩 완료
+[INFO] 전처리 시작
+[INFO] 전처리 완료 : 0.0010306835174560547초
+[INFO] GenerationConfig 옵션 설정
+[INFO] 생성 시작
+[INFO] 생성 완료 : 37.33934688568115초
+[INFO] answer : 주식회사 엔큐브는 2012년 8월 15일에 설립된 프로그램 개발 및 IT 솔루션 기업입니다. 주식회사 엔큐브는 VR/AR 콘텐츠, 모바일 앱, 게임 등 다양한 디지털 미디어 콘텐츠를 제작합니다. 주식회사 엔큐브는 글로벌 시장을 대상으로 한 콘텐츠 기획 및 개발을 수행하며, 다수의 공공기관 프로젝트를 수행했습니다.다큐브!
+[04/Aug/2025 21:00:58] "GET /chat_test?question=%ED%9A%8C%EC%82%AC%20%EC%86%8C%EA%B0%9C%20%ED%95%B4%EC%A4%98 HTTP/1.1" 200 525
+[INFO] chat_test 실행
+[INFO] 질문 : 회사 전화번호 알려줘
+[INFO] 유사도 거리 점수: 111.29823303222656
+[INFO] rag_prompt : <start_of_turn>user
+질문: 회사 전화번호 알려줘<end_of_turn>
+<start_of_turn>model
+
+[INFO] 모델 로딩 완료
+[INFO] 전처리 시작
+[INFO] 전처리 완료 : 0.0009961128234863281초
+[INFO] GenerationConfig 옵션 설정
+[INFO] 생성 시작
+[INFO] 생성 완료 : 8.789284706115723초
+[INFO] answer : 전화번호: 010-2432-0919다큐브!
+[04/Aug/2025 21:01:18] "GET /chat_test?question=%ED%9A%8C%EC%82%AC%20%EC%A0%84%ED%99%94%EB%B2%88%ED%98%B8%20%EC%95%8C%EB%A0%A4%EC%A4%98 HTTP/1.1" 200 152

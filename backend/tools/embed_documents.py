@@ -9,6 +9,7 @@ import os
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 JSONL_PATH = os.path.join(CURRENT_DIR, "../data/rag_documents.jsonl")  # JSONL 파일 경로
 FAISS_INDEX_PATH = os.path.join(CURRENT_DIR, "../embeddings/faiss_index.index") # 저장할 FAISS 인덱스 경로
+# EMBEDDING_MODEL_NAME = "jhgan/ko-sroberta-multitask"  # 한국어 특화 임베딩 모델 사용
 EMBEDDING_MODEL_NAME = "jhgan/ko-sroberta-multitask"  # 한국어 특화 임베딩 모델 사용
 VECTOR_DIM = 768  # ko-sroberta-multitask 모델 출력 차원
 

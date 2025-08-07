@@ -1,0 +1,13 @@
+[INFO] 질문 : 엔큐브의 창립일은 언제야?
+[INFO] rag_prompt : <start_of_turn>user
+엔큐브의 창립일은 언제야?<end_of_turn>
+<start_of_turn>model
+
+[INFO] 모델 로딩 완료
+[INFO] 전처리 시작
+[INFO] 전처리 완료 : 0.0009980201721191406초
+[INFO] GenerationConfig 옵션 설정
+[INFO] 생성 시작
+[INFO] 생성 완료 : 8.071434020996094초
+[INFO] answer : 엔큐브는 2015년 3월 1일 설립되었습니다.
+[31/Jul/2025 15:01:30] "GET /chat_test?question=%EC%97%94%ED%81%90%EB%B8%8C%EC%9D%98%20%EC%B0%BD%EB%A6%BD%EC%9D%BC%EC%9D%80%20%EC%96%B8%EC%A0%9C%EC%95%BC? HTTP/1.1" 200 175
