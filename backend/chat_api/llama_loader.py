@@ -13,7 +13,7 @@ from peft import PeftModel
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_MODEL_NAME = "google/gemma-2b-it"
 # PEFT_MODEL = os.path.join(CURRENT_DIR, "../tools/outputs/gemma2b-it-finetuned-20250806")
-PEFT_MODEL = os.path.join(CURRENT_DIR, "../tools/outputs/gemma2b-it-finetuned-어순")
+PEFT_MODEL = os.path.join(CURRENT_DIR, "../tools/outputs/gemma2b-it-finetuned-정제")
 ADAPTER_PATH = PEFT_MODEL  # 이 라인 추가해줘용!
 
 tokenizer = None

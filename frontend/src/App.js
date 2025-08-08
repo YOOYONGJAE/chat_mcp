@@ -16,7 +16,7 @@ function App() {
   // ✅ 컴포넌트가 처음 마운트될 때 환영 메시지 설정
   useEffect(() => {
     const welcomeMessage = {
-      text: '안녕하세요. 엔큐브 챗봇 다큐브입니다.\n다큐브는 지금 공부 중이라 내용이 조금 틀릴 수 있어요.\n제공되는 정보가 궁금하시면 "정보" 라고 입력해주세요.',
+      text: '안녕하세요. 엔큐브 챗봇 다큐브입니다.\n다큐브는 지금 공부중이라 내용이 조금 틀릴 수 있어요.\n제공되는 정보가 궁금하시면 "정보" 라고 입력해주세요.',
       sender: 'bot'
     };
     setMessages([welcomeMessage]);
@@ -91,27 +91,54 @@ function App() {
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    if (input.trim() === '') return;
+    const trimmedInput = input.trim();
+    if (trimmedInput === '') return;
 
-    // 메시지 전송 시 사용자 타이핑 중단
+    // 메시지 전송 시 사용자 타이핑 중단 및 UI 업데이트
     setIsUserTyping(false);
     clearTimeout(typingTimerRef.current);
-
-    const userMessage = { text: input, sender: 'user' };
+    const userMessage = { text: trimmedInput, sender: 'user' };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setInput('');
+
+    // "정보" 키워드 프론트엔드에서 처리
+    if (trimmedInput === "정보") {
+      setIsBotTyping(true);
+      setEyeGaze('responding');
+
+      // 자연스러운 응답을 위해 잠시 대기
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      const infoMessage = {
+        text: '현재 회사 소개와 회사 주소, 이메일, 전화번호, 창립일, 그리고 회사에서 하는 일 대해 설명해드릴 수 있어요.\n무엇이 궁금하신가요?',
+        sender: 'bot'
+      };
+      setMessages((prevMessages) => [...prevMessages, infoMessage]);
+      
+      setIsBotTyping(false);
+      setTimeout(() => {
+        if (document.activeElement === inputRef.current) {
+          setEyeGaze('typing');
+        } else {
+          setEyeGaze('default');
+        }
+      }, 500);
+      return; // 백엔드 호출 방지
+    }
+
+    // 그 외의 경우, 기존 백엔드 호출 로직 실행
     setIsBotTyping(true);
     setEyeGaze('default');
 
     try {
-      const response = await fetch(`http://localhost:8000/chat_test?question=${encodeURIComponent(input)}`);
+      const response = await fetch(`http://<vm_ip_address>:8000/chat_test?question=${encodeURIComponent(trimmedInput)}`);
       const data = await response.json();
       const botMessage = { text: data.answer, sender: 'bot' };
       
       setEyeGaze('responding');
       setMessages((prevMessages) => [...prevMessages, botMessage]);
 
-      // ✅ 수정된 로직: 응답 애니메이션 후 포커스 상태에 따라 눈동자 변경
+      // 응답 애니메이션 후 포커스 상태에 따라 눈동자 변경
       setTimeout(() => {
         if (document.activeElement === inputRef.current) {
           setEyeGaze('typing');
@@ -145,7 +172,7 @@ function App() {
               className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div
-                className={`max-w-xs px-4 py-2 rounded-lg shadow-md ${msg.sender === 'user'
+                className={`max-w-xs px-4 py-2 rounded-lg shadow-md whitespace-pre-wrap ${msg.sender === 'user'
                   ? 'bg-blue-500 text-white rounded-br-none'
                   : 'bg-white text-blue-800 rounded-bl-none'
                 }`}

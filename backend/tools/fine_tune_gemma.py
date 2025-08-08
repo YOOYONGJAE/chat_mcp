@@ -14,10 +14,10 @@ from transformers import Trainer
 # ----- [설정 시작] -----
 model_name = "google/gemma-2b-it"
 # 학습 방식이 근본적으로 바뀌므로, 새로운 결과 폴더를 사용합니다.
-output_dir = "./outputs/gemma2b-it-finetuned-어순"
+output_dir = "./outputs/gemma2b-it-finetuned-정제"
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 # instruction/output이 분리된 원본 데이터를 사용합니다.
-JSONL_PATH = os.path.join(CURRENT_DIR, "../data/ncube_finetune_data_io_어순.jsonl")
+JSONL_PATH = os.path.join(CURRENT_DIR, "../data/ncube_finetune_data_io_정제.jsonl")
 # -----  [설정 끝]  -----
 
 # ----- [모델 로드 및 준비 시작] -----
