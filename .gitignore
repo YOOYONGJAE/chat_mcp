@@ -1,6 +1,6 @@
 # Python virtual environment
 backend/venv/
-backend/tools/outputs/
+# backend/tools/outputs/
 backend/tools/logs/
 backend/tools/t_logs/
 frontend/node_modules/
