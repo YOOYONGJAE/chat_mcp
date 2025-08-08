@@ -38,14 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',  # ✅ 추가
+    'corsheaders',
     'chat_api',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # ✅ 추가
+    'django.contrib.sessions.middleware.SessionMiddleware',    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -55,7 +55,9 @@ MIDDLEWARE = [
 
 # ✅ 추가 시작
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # 리액트 개발 서버 주소
+    "http://localhost:3000",  
+    "http://192.168.0.127:3000",  
+    "http://devstudio.ddns.net:4001",  
     "http://127.0.0.1:3000",
 ]
 # ✅ 추가 끝
