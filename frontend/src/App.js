@@ -131,7 +131,7 @@ function App() {
     setEyeGaze('default');
 
     try {
-      const response = await fetch(`http://<vm_ip_address>:8000/chat_test?question=${encodeURIComponent(trimmedInput)}`);
+      const response = await fetch(`http://devstudio.ddns.net:4000/chat_test?question=${encodeURIComponent(trimmedInput)}`);
       const data = await response.json();
       const botMessage = { text: data.answer, sender: 'bot' };
       
