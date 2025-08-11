@@ -14,8 +14,18 @@ function App() {
   const inputRef = useRef(null);
   const gazeIntervalRef = useRef(null);
 
-  // Welcome message on first mount
+  // Function to start the timer that makes the eyes sleep
+  const startIdleTimer = () => {
+    clearTimeout(idleTimerRef.current);
+    idleTimerRef.current = setTimeout(() => {
+      setEyeGaze('sleeping');
+      isSleepingRef.current = true;
+    }, 15000); // 15 seconds
+  };
+
+  // Welcome message
   useEffect(() => {
+    startIdleTimer(); // Start idle timer on initial load
     const welcomeMessage = {
       text: '안녕하세요. 엔큐브 챗봇 다큐브입니다.\n다큐브는 지금 공부중이라 내용이 조금 틀릴 수 있어요.\n제공되는 정보가 궁금하시면 "정보" 라고 입력해주세요.',
       sender: 'bot'
@@ -23,16 +33,12 @@ function App() {
     setMessages([welcomeMessage]);
   }, []);
 
-  // Scroll to bottom when messages change
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
+  // Scroll to bottom
   useEffect(() => {
-    scrollToBottom();
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isBotTyping, isUserTyping]);
 
-  // Cleanup timers on unmount
+  // Cleanup timers
   useEffect(() => {
     return () => {
       clearTimeout(idleTimerRef.current);
@@ -46,38 +52,26 @@ function App() {
   // Eye animation effect when bot is typing
   useEffect(() => {
     if (isBotTyping) {
-            const gazeSequence = ['top-left', 'top-right'];
+      clearTimeout(idleTimerRef.current); // Don't sleep while bot is typing
+      const gazeSequence = ['top-left', 'top-right'];
       let currentIndex = 0;
-      
-      // Start animation immediately
       setEyeGaze(gazeSequence[currentIndex]);
-
       gazeIntervalRef.current = setInterval(() => {
         currentIndex = (currentIndex + 1) % gazeSequence.length;
         setEyeGaze(gazeSequence[currentIndex]);
-      }, 700); // Change gaze every 700ms
-
+      }, 700);
     } else {
-      // Stop animation when bot is not typing
       if (gazeIntervalRef.current) {
         clearInterval(gazeIntervalRef.current);
         gazeIntervalRef.current = null;
       }
-      // Reset gaze based on focus
-      if (document.activeElement === inputRef.current) {
-        setEyeGaze('typing');
-      } else {
-        setEyeGaze('default');
-      }
     }
-
     return () => {
       if (gazeIntervalRef.current) {
         clearInterval(gazeIntervalRef.current);
       }
     };
   }, [isBotTyping]);
-
 
   const handleFocus = () => {
     clearTimeout(idleTimerRef.current);
@@ -100,26 +94,32 @@ function App() {
 
   const handleBlur = () => {
     setEyeGaze('default');
-    idleTimerRef.current = setTimeout(() => {
-      setEyeGaze('sleeping');
-      isSleepingRef.current = true;
-    }, 15000);
+    startIdleTimer(); // Start sleep timer on blur
   };
 
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInput(value);
+
+    clearTimeout(idleTimerRef.current); // Clear sleep timer on activity
     if (typingTimerRef.current) {
       clearTimeout(typingTimerRef.current);
     }
+
     if (value.trim() !== '') {
       setIsUserTyping(true);
+      setEyeGaze('typing');
     } else {
       setIsUserTyping(false);
+      setEyeGaze('default');
+      startIdleTimer(); // Start sleep timer if input is cleared
       return;
     }
+
     typingTimerRef.current = setTimeout(() => {
       setIsUserTyping(false);
+      setEyeGaze('default');
+      startIdleTimer(); // Start sleep timer when user stops typing
     }, 1500);
   };
 
@@ -128,15 +128,15 @@ function App() {
     const trimmedInput = input.trim();
     if (trimmedInput === '') return;
 
+    clearTimeout(idleTimerRef.current);
     setIsUserTyping(false);
     clearTimeout(typingTimerRef.current);
     const userMessage = { text: trimmedInput, sender: 'user' };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setInput('');
     
-    setIsBotTyping(true); // Start animation
+    setIsBotTyping(true);
 
-    // Handle "정보" keyword on the frontend
     if (trimmedInput === "정보") {
       await new Promise(resolve => setTimeout(resolve, 500));
       const infoMessage = {
@@ -144,39 +144,38 @@ function App() {
         sender: 'bot'
       };
       
-      if (gazeIntervalRef.current) {
-        clearInterval(gazeIntervalRef.current);
-      }
+      setIsBotTyping(false);
       setEyeGaze('responding');
       setMessages((prevMessages) => [...prevMessages, infoMessage]);
       
       setTimeout(() => {
-        setIsBotTyping(false); // Stop animation and reset gaze via useEffect
+        setEyeGaze('default');
+        startIdleTimer();
       }, 500);
       return;
     }
 
-    // Call backend for other queries
     try {
       const response = await fetch(`http://devstudio.ddns.net:4000/chat_test?question=${encodeURIComponent(trimmedInput)}`);
       const data = await response.json();
       const botMessage = { text: data.answer, sender: 'bot' };
       
-      if (gazeIntervalRef.current) {
-        clearInterval(gazeIntervalRef.current);
-      }
-      setEyeGaze('responding'); // Look down-left on response
+      setIsBotTyping(false);
+      setEyeGaze('responding');
       setMessages((prevMessages) => [...prevMessages, botMessage]);
 
       setTimeout(() => {
-        setIsBotTyping(false); // Stop animation and reset gaze via useEffect
+        setEyeGaze('default');
+        startIdleTimer();
       }, 1000);
 
     } catch (error) {
       console.error("Error sending message:", error);
       const errorMessage = { text: "죄송합니다. 메시지를 보내는 데 실패했습니다.", sender: 'bot' };
       setMessages((prevMessages) => [...prevMessages, errorMessage]);
-      setIsBotTyping(false); // Stop animation on error
+      setIsBotTyping(false);
+      setEyeGaze('default');
+      startIdleTimer();
     }
   };
 
